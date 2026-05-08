@@ -23,6 +23,6 @@ jobs:
         run: |
           run: |
           databricks workspace import /Workspace/Users/jeevanprabhakaran19@gmail.com/TnKingmaker2026 \
-            --file ./Notebook.py \
+            --file ./Notebook.ipynb \
             --language PYTHON \
             --overwrite
