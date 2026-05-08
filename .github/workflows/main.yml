@@ -22,7 +22,7 @@ jobs:
           python version: 3.12
           
       - name: Setup Databricks CLI
-        uses: actions/setup-cli@main
+        uses: databricks/setup-cli@main
 
       - name: Validate Databricks bundle - dev
         env:
