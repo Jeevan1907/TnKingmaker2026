@@ -22,7 +22,7 @@ jobs:
           DATABRICKS_TOKEN: ${{ secrets.DEV_ACCESS_TOKEN }}
         run: |
           run: |
-          databricks workspace import ./Notebook.ipynb \
+          databricks workspace import ./Notebook.py \
             /Workspace/Users/jeevanprabhakaran19@gmail.com/TnKingmaker2026 \
-            --format JUPYTER \
+            --format PYTHON \
             --overwrite
