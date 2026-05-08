@@ -24,7 +24,7 @@ jobs:
           DATABRICKS_HOST: ${{ secrets.DEV_BAKEHOUSE_WS }}
           DATABRICKS_TOKEN: ${{ secrets.DEV_ACCESS_TOKEN }}
         run: |
-          databricks workspace import_dir notebooks /Workspace/Users/jeevanprabhakaran19@gmail.com/TnKingmaker2026/New Notebook 2026-05-08 14_57_33
+          databricks workspace import-dir notebooks /Workspace/Users/jeevanprabhakaran19@gmail.com/TnKingmaker2026/New Notebook 2026-05-08 14_57_33
 
       - name: Deploy to Databricks dev
         env:
@@ -50,7 +50,7 @@ jobs:
           DATABRICKS_HOST: ${{ secrets.DEV_BAKEHOUSE_WS }}
           DATABRICKS_TOKEN: ${{ secrets.DEV_ACCESS_TOKEN }}
         run: |
-          databricks workspace import_dir notebooks /Workspace/Users/jeevanprabhakaran19@gmail.com/Prod_TnKingmaker2026/New Notebook 2026-05-08 14_57_33
+          databricks workspace import-dir notebooks /Workspace/Users/jeevanprabhakaran19@gmail.com/Prod_TnKingmaker2026/New Notebook 2026-05-08 14_57_33
 
       - name: Deploy to Databricks prod
         env:
