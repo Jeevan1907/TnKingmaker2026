@@ -1,0 +1,60 @@
+name: main
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy-dev:
+    if: github.ref == 'refs/heads/dev'
+    runs-on: ubuntu-latest
+    environment: dev
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Databricks CLI
+        uses: databricks/setup-cli@main
+
+      - name: Validate Databricks bundle - dev
+        env:
+          DATABRICKS_HOST: ${{ secrets.DEV_BAKEHOUSE_WS }}
+          DATABRICKS_TOKEN: ${{ secrets.DEV_ACCESS_TOKEN }}
+        run: |
+          databricks bundle validate -t dev
+
+      - name: Deploy to Databricks dev
+        env:
+          DATABRICKS_HOST: ${{ secrets.DEV_BAKEHOUSE_WS }}
+          DATABRICKS_TOKEN: ${{ secrets.DEV_ACCESS_TOKEN }}
+        run: |
+          databricks bundle deploy -t dev
+
+  deploy-prod:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: prod
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Databricks CLI
+        uses: databricks/setup-cli@main
+
+      - name: Validate Databricks bundle - prod
+        env:
+          DATABRICKS_HOST: ${{ secrets.DEV_BAKEHOUSE_WS }}
+          DATABRICKS_TOKEN: ${{ secrets.DEV_ACCESS_TOKEN }}
+        run: |
+          databricks bundle validate -t prod
+
+      - name: Deploy to Databricks prod
+        env:
+          DATABRICKS_HOST: ${{ secrets.DEV_BAKEHOUSE_WS }}
+          DATABRICKS_TOKEN: ${{ secrets.DEV_ACCESS_TOKEN }}
+        run: |
+          databricks bundle deploy -t prod
